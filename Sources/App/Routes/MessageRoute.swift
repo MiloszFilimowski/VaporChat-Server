@@ -12,8 +12,6 @@ final class MessageRoute: RouteCollection {
 
 	func build(_ builder: RouteBuilder) throws {
 		try builder.resource("message", MessageController.self)
-
-		
 	}
 }
 

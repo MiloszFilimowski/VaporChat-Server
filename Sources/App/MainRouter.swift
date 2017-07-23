@@ -20,6 +20,10 @@ final class MainRouter: RouteCollection {
 
 		let authRoute = apiRoute.grouped("auth")
 
+//		try builder.collection(SocketMessageRoute.self)
+		builder.socket("message", handler: MessageController().handleMessages)
+		
+
 		authRoute.post("register", handler: AuthController().register)
 		authRoute.grouped(PasswordAuthenticationMiddleware(User.self))
 			.post("login", handler: AuthController().login)
