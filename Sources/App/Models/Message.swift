@@ -84,7 +84,7 @@ extension Message: Preparation {
 		try database.create(self) { builder in
 			builder.id()
 			builder.string(Message.bodyKey)
-			builder.foreignId(for: User.self)
+			builder.foreignId(for: User.self, optional: false, unique: true, foreignIdKey: Message.authorIDKey, foreignKeyName: Message.authorIDKey)
 		}
 	}
 
@@ -107,7 +107,7 @@ extension Message: ResponseRepresentable, JSONConvertible {
 		var json = JSON()
 		try json.set(Message.idKey, id)
 		try json.set(Message.bodyKey, body)
-		try json.set("author", author)
+		try json.set("author", author.get()?.makeJSON())
 		return json
 	}
 

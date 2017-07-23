@@ -36,6 +36,10 @@ final class Token: Model {
 	/// The identifier of the user to which the token belongs
 	let userId: Identifier
 
+	// MARK: Database keys
+
+
+
 	/// Initialiazes a token
 	///
 	/// - Parameters:
