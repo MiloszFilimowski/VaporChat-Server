@@ -99,7 +99,7 @@ extension Message: ResponseRepresentable, JSONConvertible {
 	convenience init(json: JSON) throws {
 		try self.init(
 			body: json.get(Message.bodyKey),
-			authorID: json.get(Message.authorIDKey)
+			authorID: User.authenticatedUser().id!
 		)
 	}
 

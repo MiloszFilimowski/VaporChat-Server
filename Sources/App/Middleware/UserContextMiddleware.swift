@@ -6,12 +6,29 @@
 //
 //
 
+import AuthProvider
 import HTTP
 
 final class UserContextMiddleware: Middleware {
-	func respond(to request: Request, chainingTo next: Responder) throws -> Response {
 
-		
+	fileprivate static var authUser: User? = nil
+
+	func respond(to request: Request, chainingTo next: Responder) throws -> Response {
+		if let user = try? request.auth.assertAuthenticated() as User {
+			UserContextMiddleware.authUser = user
+		}
 		return try next.respond(to: request)
 	}
+}
+
+extension UserContextMiddleware {
+
+	static func authenticatedUser() throws -> User {
+		if let user = UserContextMiddleware.authUser {
+			return user
+		} else {
+			throw AuthenticationError.notAuthenticated
+		}
+	}
+
 }
