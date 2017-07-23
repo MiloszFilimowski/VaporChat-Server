@@ -24,8 +24,7 @@ final class User: Model {
 
 	// MARK: Database keys
 
-	static var usernameKey = "user_name" 
-
+	static var usernameKey = "user_name"
 
 	/// Initializes a user.
 	///
@@ -110,7 +109,6 @@ extension User: PasswordAuthenticatable {
 		set { _userPasswordVerifier = newValue }
 	}
 
-	
 }
 
 extension User: TokenAuthenticatable {

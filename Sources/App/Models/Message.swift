@@ -84,7 +84,7 @@ extension Message: Preparation {
 		try database.create(self) { builder in
 			builder.id()
 			builder.string(Message.bodyKey)
-			builder.foreignId(for: User.self, optional: false, unique: true, foreignIdKey: Message.authorIDKey, foreignKeyName: Message.authorIDKey)
+			builder.foreignId(for: User.self, optional: false, unique: false, foreignIdKey: Message.authorIDKey, foreignKeyName: Message.authorIDKey)
 		}
 	}
 
